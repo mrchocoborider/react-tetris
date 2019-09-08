@@ -7,12 +7,22 @@ export const useStage = (player, resetPlayer) => {
 
     useEffect(() => {
         setRowsCleared(0);
+        //console.log('how often do I get called, and when?')
 
         const sweepRows = newStage => 
             newStage.reduce((acc, row) => {
-                // so if the row is full, it unshifts a blank row to acc
-                // otherwise it will push the row unchanged to acc...
-                if (row.findIndex(cell => cell[0] === 0) === -1) {
+                // tried to make a flash effect but it's not worth the trouble lol
+                /*if (row.findIndex(cell => cell[0] === 0) === -1 
+                && row.every(cell => cell[0] !== 'W' ) ) {
+                    setRowsCleared(prev => prev + 1);
+
+                    
+                    acc.push(row.map(cell => ['W', 'merged']));
+                    return acc;    
+                    
+                } else if
+                if (row.every(cell => cell[0] === 'W')) {*/
+                if (row.findIndex(cell => cell[0] === 0) === -1){
                     setRowsCleared(prev => prev + 1);
 
                     
@@ -35,36 +45,13 @@ export const useStage = (player, resetPlayer) => {
                 
             }, [])
 
-        /*const sweepRows2 = newStage => 
-            newStage.reduce((acc, row) => {
-                // so if the row is full, it unshifts a blank row to acc
-                // otherwise it will push the row unchanged to acc...
-                if (row.findIndex(cell => cell[0] === 0) === -1) {
-                    setRowsCleared(prev => prev + 1);
-
-                    //put color changing code here? No, because it doesn't get added in at all
-                    //row.map(cell => cell['W', 'merged']);
-                    
-
-                    //I guess we can understand this as essentially skipping over the current row
-                    //since it's not added to the accumulator, the new stage will not have it.
-                    //Otherwise, the row is pushed to the accumulator as is. 
-                    acc.unshift(new Array(newStage[0].length).fill([0, 'clear']));
-                    return acc;    
-                    
-                }
-                
-                acc.push(row);
-                console.log('acc3: ' + acc);
-                return acc;
-                
-                
-            }, [])*/
+        
         
 
 
         const updateStage = prevStage => {
             // First flush the stage
+            
             const newStage = prevStage.map(row => 
                 
                 row.map(cell => (cell[1] === 'clear' ? [0, 'clear'] : cell))
@@ -72,13 +59,7 @@ export const useStage = (player, resetPlayer) => {
                 
                 );
 
-            newStage.forEach(row => {
-                if (row.findIndex(cell => cell[0] === 0) === -1) {
-                    row.map(cell => cell.color = (255, 255, 255 ));
-                }
-            });
-
-            //newStage[1].map(cell => cell[1] == 'clear' ? ['W', 'merged'] : ['W', 'merged']);
+            
 
             
             
@@ -99,7 +80,13 @@ export const useStage = (player, resetPlayer) => {
                 resetPlayer();
                 return sweepRows(newStage);
             }
-
+            /*
+            part of flash effect testing
+            if ( player.collided === 'test'){
+                return sweepRows(newStage);
+            }
+            */
+            
             return newStage;
         };
 

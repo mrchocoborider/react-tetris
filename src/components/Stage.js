@@ -9,4 +9,11 @@ const Stage = ({ stage }) => (
     </StyledStage>
 );
 
+/*const nextTetro = ({ nexttetro }) => (
+    
+    <StyledStage width={nexttetro[0].length} height={nexttetro.length - 11} >
+        {nexttetro.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]} /> ))}
+    </StyledStage>
+)*/
+
 export default Stage;
