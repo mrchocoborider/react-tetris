@@ -22,9 +22,9 @@ export const useStage = (player, resetPlayer) => {
                     //I guess we can understand this as essentially skipping over the current row
                     //since it's not added to the accumulator, the new stage will not have it.
                     //Otherwise, the row is pushed to the accumulator as is. 
-                    //acc.unshift(new Array(newStage[0].length).fill([0, 'clear']));
-                    //acc.push(row.map(cell => cell[1] == 'clear' ? ['W', 'merged'] : ['W', 'merged']));
-                    acc.push(row.map(cell => ['W', 'merged']));
+                    acc.unshift(new Array(newStage[0].length).fill([0, 'clear']));
+                    
+                    //acc.push(row.map(cell => ['W', 'merged']));
                     return acc;    
                     
                 }
@@ -35,7 +35,7 @@ export const useStage = (player, resetPlayer) => {
                 
             }, [])
 
-        const sweepRows2 = newStage => 
+        /*const sweepRows2 = newStage => 
             newStage.reduce((acc, row) => {
                 // so if the row is full, it unshifts a blank row to acc
                 // otherwise it will push the row unchanged to acc...
@@ -59,7 +59,7 @@ export const useStage = (player, resetPlayer) => {
                 return acc;
                 
                 
-            }, [])
+            }, [])*/
         
 
 
