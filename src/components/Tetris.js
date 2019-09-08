@@ -62,6 +62,7 @@ const Tetris = () => {
 
         if (!checkCollision(player, stage, { x: 0, y: 1})){
             updatePlayerPos({ x: 0, y: 1, collided: false});
+            console.log('testing deploying');
             //flash effect test
             //updatePlayerPos({ x: 0, y: 0, collided: 'test'});
             
