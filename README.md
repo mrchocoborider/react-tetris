@@ -1,5 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Description
+
+This project was originally just a fun follow along of [this amazing tutorial](https://www.youtube.com/watch?v=ZGOaCxX8HIU). I basically knew no React whatsover going in, but thought it would be a fun way to get some familiarity. In order to get a deeper understanding of what was happening I challenged myself to add a few features from a version of tetris that I had played as a child. These features include the following:
+
+1. Press spacebar to instantly drop tetromino into place. Implemented "successfully" but still have some bugs to work out (if it gets too close to the bottom before pressing spacebar it will break the game).
+
+2. Flash effect when clearing a line. Gave up after spending too much time for such a minor addition. Did make some headway but because of the way the lines are cleared I found it took too much re-configuring to justify the effort. Some evidence of my attempts remain in the comments.
+
+3. Next tetromino display, this will be my next feature attempt.
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
