@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
+
 import { createStage, checkCollision } from '../gameHelpers';
 
 // Components
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
+import PauseButton from './PauseButton';
 
 //Styled Components
 import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris'
@@ -23,6 +25,9 @@ import { useGameStatus } from '../hooks/useGameStatus';
 const Tetris = () => {
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
+    const [paused, setPaused] = useState(false);
+    const [buttText, setButtText] = useState("Pause Game");
+    const [startText, setStartText] = useState("Start Game");
 
     const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
     //const [stage, setStage] = useStage(player, resetPlayer);
@@ -30,6 +35,7 @@ const Tetris = () => {
     const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
         rowsCleared
     );
+
 
 
     //console.log('re-render');
@@ -44,12 +50,26 @@ const Tetris = () => {
     const startGame = () => {
         // Reset everything
         setStage(createStage());
+        setPaused(false);
         resetPlayer();
         setDropTime(1000);
         setGameOver(false);
         setScore(0);
         setRows(0);
         setLevel(0);
+        setStartText("Restart Game");
+    }
+
+    const pauseGame = () => {
+        if (paused !== true) {
+            setDropTime(null);
+            setPaused(true);
+            setButtText("Unpause Game");
+        } else if (paused === true) {
+            setDropTime(1000 / (level + 1) + 200);
+            setPaused(false);
+            setButtText("Pause Game");
+        }
     }
 
     const drop = () => {
@@ -72,6 +92,7 @@ const Tetris = () => {
             
             if (player.pos.y < 1){
                 console.log("GAME OVER!!!");
+                setStartText("Start Game");
                 setGameOver(true);
                 setDropTime(null);
             }
@@ -109,6 +130,7 @@ const Tetris = () => {
         if (checkCollision(player, stage, {x: 0, y:1})){
             console.log("GAME OVER!!!");
             setGameOver(true);
+            setStartText("Start Game");
             setDropTime(null);
         }
         
@@ -117,7 +139,9 @@ const Tetris = () => {
         }
         
         cy -= 1;
+        console.log(cy);
         updatePlayerPos({ x: 0, y: cy, collided: true});
+        //updatePlayerPos({ x: 0, y: cy, collided: false});
  
     }
 
@@ -165,7 +189,8 @@ const Tetris = () => {
                     <Display text={`Level: ${level}`} />
                 </div>
                 )}
-                <StartButton callback={startGame} />
+                <StartButton callback={startGame} text={startText} />
+                <PauseButton callback={pauseGame} text={buttText} />
             </aside>
         </StyledTetris>
     </StyledTetrisWrapper>

@@ -9,7 +9,9 @@ This project was originally just a fun follow along of [this amazing tutorial](h
 
 2. Flash effect when clearing a line. Gave up after spending too much time for such a minor addition. Did make some headway but because of the way the lines are cleared I found it took too much re-configuring to justify the effort. Some evidence of my attempts remain in the comments.
 
-3. Next tetromino display, this will be my next feature attempt.
+3. Pause button, mostly for myself to help me test things. Took me longer than I'd like to admit to implement the text change on click. Also used what I learned here to change the Start Button's text to be more clear after starting the game. 
+
+4. Next tetromino display, this will be my next feature attempt.
 
 
 
