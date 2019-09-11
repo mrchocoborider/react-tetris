@@ -5,11 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project was originally just a fun follow along of [this amazing tutorial](https://www.youtube.com/watch?v=ZGOaCxX8HIU). I basically knew no React whatsover going in, but thought it would be a fun way to get some familiarity. In order to get a deeper understanding of what was happening I challenged myself to add a few features from a version of tetris that I had played as a child. These features include the following:
 
-1. Press spacebar to instantly drop tetromino into place. Implemented "successfully" but still have some bugs to work out (if it gets too close to the bottom before pressing spacebar it will break the game).
+1. Press spacebar to instantly drop tetromino into place. Implemented successfully after a decent struggle, ultimately the struggle was self inflicted and this turned out to be way simpler than expected. I thought I needed to pass in the player position to checkCollision as y, but it already had that because you have to pass in player, x/y should be how much you move the player.
 
 2. Flash effect when clearing a line. Gave up after spending too much time for such a minor addition. Did make some headway but because of the way the lines are cleared I found it took too much re-configuring to justify the effort. Some evidence of my attempts remain in the comments.
 
-3. Pause button, mostly for myself to help me test things. Took me longer than I'd like to admit to implement the text change on click. Also used what I learned here to change the Start Button's text to be more clear after starting the game. 
+3. Pause button, mostly for myself to help me test things out and was instrumental in helping figure out the instant drop feature. Took me longer than I'd like to admit to implement the text change on click. Also used what I learned here to change the Start Button's text to be more clear after starting the game. 
 
 4. Next tetromino display, this will be my next feature attempt.
 

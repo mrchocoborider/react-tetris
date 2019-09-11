@@ -26,7 +26,7 @@ const Tetris = () => {
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
     const [paused, setPaused] = useState(false);
-    const [buttText, setButtText] = useState("Pause Game");
+    const [pauseText, setPauseText] = useState("Pause Game");
     const [startText, setStartText] = useState("Start Game");
 
     const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
@@ -58,17 +58,19 @@ const Tetris = () => {
         setRows(0);
         setLevel(0);
         setStartText("Restart Game");
+        setPauseText("Pause Game");
+        
     }
 
     const pauseGame = () => {
         if (paused !== true) {
             setDropTime(null);
             setPaused(true);
-            setButtText("Unpause Game");
+            setPauseText("Unpause Game");
         } else if (paused === true) {
             setDropTime(1000 / (level + 1) + 200);
             setPaused(false);
-            setButtText("Pause Game");
+            setPauseText("Pause Game");
         }
     }
 
@@ -82,9 +84,12 @@ const Tetris = () => {
 
         if (!checkCollision(player, stage, { x: 0, y: 1})){
             updatePlayerPos({ x: 0, y: 1, collided: false});
-            console.log('testing deploying');
             //flash effect test
             //updatePlayerPos({ x: 0, y: 0, collided: 'test'});
+            console.log('player before: ');
+            console.log(player);
+            //console.log('check collision')
+            //console.log(checkCollision(player, stage, { x: 0, y: 11}));
             
             
         } else {
@@ -93,6 +98,7 @@ const Tetris = () => {
             if (player.pos.y < 1){
                 console.log("GAME OVER!!!");
                 setStartText("Start Game");
+                setPauseText("Pause Game");
                 setGameOver(true);
                 setDropTime(null);
             }
@@ -124,8 +130,9 @@ const Tetris = () => {
     //or closer to already merged tetrominos.
     const fastDrop = () => {
         console.log("Interval off");
-        setDropTime(null);
-        let cy = player.pos.y;
+        setDropTime(null);        
+        let cy = 0
+        
 
         if (checkCollision(player, stage, {x: 0, y:1})){
             console.log("GAME OVER!!!");
@@ -136,11 +143,15 @@ const Tetris = () => {
         
         while(!checkCollision(player, stage, { x: 0, y: cy })){
             cy += 1
+
         }
         
         cy -= 1;
-        console.log(cy);
+        //console.log(cy);
         updatePlayerPos({ x: 0, y: cy, collided: true});
+
+        //console.log('player after: ');
+        //console.log(player);
         //updatePlayerPos({ x: 0, y: cy, collided: false});
  
     }
@@ -190,7 +201,7 @@ const Tetris = () => {
                 </div>
                 )}
                 <StartButton callback={startGame} text={startText} />
-                <PauseButton callback={pauseGame} text={buttText} />
+                <PauseButton callback={pauseGame} text={pauseText} />
             </aside>
         </StyledTetris>
     </StyledTetrisWrapper>
