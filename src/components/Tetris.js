@@ -134,7 +134,8 @@ const Tetris = () => {
         let cy = 0
         
 
-        if (checkCollision(player, stage, {x: 0, y:1})){
+        //if (checkCollision(player, stage, {x: 0, y:1})){
+        if (player.pos.y < 1 && checkCollision(player, stage, {x: 0, y:1})){
             console.log("GAME OVER!!!");
             setGameOver(true);
             setStartText("Start Game");
