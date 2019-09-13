@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createStage } from '../gameHelpers';
 
-export const useStage = (player, resetPlayer) => {
+export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
     const [stage, setStage] = useState(createStage());
     const [rowsCleared, setRowsCleared] = useState(0);
 
@@ -77,7 +77,8 @@ export const useStage = (player, resetPlayer) => {
             });
             // Then check if we collided
             if (player.collided) {
-                resetPlayer();
+                resetTetro(next);
+                resetPlayer(tetro);
                 return sweepRows(newStage);
             }
             /*
@@ -92,7 +93,7 @@ export const useStage = (player, resetPlayer) => {
 
         setStage(prev => updateStage(prev))
 
-    }, [player, resetPlayer, rowsCleared]);
+    }, [player, resetPlayer, resetTetro, rowsCleared]);
 
     return [stage, setStage, rowsCleared];
 }

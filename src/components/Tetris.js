@@ -5,6 +5,7 @@ import { createStage, checkCollision } from '../gameHelpers';
 
 // Components
 import Stage from './Stage';
+import Next from './Next';
 import Display from './Display';
 import StartButton from './StartButton';
 import PauseButton from './PauseButton';
@@ -17,6 +18,7 @@ import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris'
 import { useInterval } from '../hooks/useInterval';
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from '../hooks/useStage';
+import { useNext } from '../hooks/useNext';
 import { useGameStatus } from '../hooks/useGameStatus';
 //import { clone } from '@babel/types';
 
@@ -29,9 +31,14 @@ const Tetris = () => {
     const [pauseText, setPauseText] = useState("Pause Game");
     const [startText, setStartText] = useState("Start Game");
 
-    const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
+    const [next, tetro, resetTetro] = useNext();
+    const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer(tetro);
+    console.log('player');
+    console.log(player);
+    console.log('tetro');
+    console.log(tetro);
     //const [stage, setStage] = useStage(player, resetPlayer);
-    const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
+    const [stage, setStage, rowsCleared] = useStage(player, resetPlayer, tetro, resetTetro, next);
     const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
         rowsCleared
     );
@@ -51,7 +58,8 @@ const Tetris = () => {
         // Reset everything
         setStage(createStage());
         setPaused(false);
-        resetPlayer();
+        resetTetro(next);
+        resetPlayer(tetro);        
         setDropTime(1000);
         setGameOver(false);
         setScore(0);
@@ -180,7 +188,7 @@ const Tetris = () => {
         drop();
     }, dropTime)
 
-    /*<Display text={`Next: ${nexttetromino}`} />*/
+    /*<Display text={`Next: `} />*/
     return (
     <StyledTetrisWrapper 
         role="button" 
@@ -195,7 +203,7 @@ const Tetris = () => {
                     <Display gameOver ={gameOver} text="Game Over" />
                 ) : (
                 <div>
-                    
+                    <Next next={next} />
                     <Display text={`Score: ${score}`} />
                     <Display text={`Rows: ${rows}`} />
                     <Display text={`Level: ${level}`} />
