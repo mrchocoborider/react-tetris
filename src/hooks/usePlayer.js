@@ -7,14 +7,15 @@ import { STAGE_WIDTH, checkCollision } from '../gameHelpers';
 
 
 
-
-
-export const usePlayer = () => {
+//export const usePlayer = () => {
+export const usePlayer = (tetro) => {    
     const [player, setPlayer] = useState({
         pos: { x: 0, y: 0 },
         tetromino: TETROMINOS[0].shape,
         collided: false,
     });
+
+
 
     //matrix = tetromino
     const rotate = (matrix, dir) => {
@@ -58,10 +59,12 @@ export const usePlayer = () => {
         }))
     };
 
-    const resetPlayer = useCallback(() => {
+    //just draw the tetromino in the mini display, then grab its shape here, and reset it
+    const resetPlayer = useCallback((tetro) => {
         setPlayer({
             pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
-            tetromino: randomTetromino().shape,
+            //tetromino: randomTetromino().shape,
+            tetromino: tetro.tetromino,
             collided: false,
         })
     }, []);

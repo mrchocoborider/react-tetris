@@ -6,16 +6,17 @@ export const createStage = () =>
         new Array(STAGE_WIDTH).fill([0, 'clear'])
     );
 
-//nextTetro
-/*
-export const NT_WIDTH = 5;
-export const NT_HEIGHT = 5;
 
-export const createNt = () =>
-    Array.from(Array(NT_HEIGHT), () =>
-        new Array(NT_WIDTH).fill([0, 'clear'])
+//nextTetro
+
+export const NEXT_WIDTH = 4;
+export const NEXT_HEIGHT = 4;
+
+export const createNext = () =>
+    Array.from(Array(NEXT_HEIGHT), () =>
+        new Array(NEXT_WIDTH).fill([0, 'clear'])
     );
-*/
+
 
 export const checkCollision = (player,  stage, { x: moveX, y: moveY }) => {
     for (let y = 0; y < player.tetromino.length; y += 1) {
