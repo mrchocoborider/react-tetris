@@ -11,7 +11,7 @@ This project was originally just a fun follow along of [this amazing tutorial](h
 
 3. Pause button, mostly for myself to help me test things out and was instrumental in helping figure out the instant drop feature. Took me longer than I'd like to admit to implement the text change on click. Also used what I learned here to change the Start Button's text to be more clear after starting the game. 
 
-4. Next tetromino display, this will be my next feature attempt.
+4. Next tetromino display, this was definitely the most complicated and had the most moving parts. I had to make a decent number of new files, new components, new hooks, new styles etc. Also a lot of adjustments to existing code to get it to play with player and stage right.
 
 
 
