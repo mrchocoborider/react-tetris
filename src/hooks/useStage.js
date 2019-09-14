@@ -4,40 +4,54 @@ import { createStage } from '../gameHelpers';
 export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
     const [stage, setStage] = useState(createStage());
     const [rowsCleared, setRowsCleared] = useState(0);
-
+    const [test, setTest] = useState(0);
+    //let test = 0;
+    
     useEffect(() => {
         setRowsCleared(0);
         //console.log('how often do I get called, and when?')
 
         const sweepRows = newStage => 
             newStage.reduce((acc, row) => {
+                
                 // tried to make a flash effect but it's not worth the trouble lol
-                /*if (row.findIndex(cell => cell[0] === 0) === -1 
+                if (row.findIndex(cell => cell[0] === 0) === -1 
                 && row.every(cell => cell[0] !== 'W' ) ) {
-                    setRowsCleared(prev => prev + 1);
-
-                    
-                    acc.push(row.map(cell => ['W', 'merged']));
+                    //setRowsCleared(prev => prev + 1);
+                    setTest(1);
+                    console.log('test: ');
+                    console.log(test);
+                    acc.push(row.map(() => ['W', 'merged']));
                     return acc;    
                     
-                } else if
-                if (row.every(cell => cell[0] === 'W')) {*/
-                if (row.findIndex(cell => cell[0] === 0) === -1){
+                } else if (row.every(cell => cell[0] === 'W')) {
+
+                    setRowsCleared(prev => prev + 1);
+
+                    //test = 0;
+                    
+                    
+
+                  
+                    acc.unshift(new Array(newStage[0].length).fill([0, 'clear']));
+                    
+                    //acc.push(row.map(cell => ['W', 'merged']));
+                    return acc;  
+                }                    
+                /*if (row.findIndex(cell => cell[0] === 0) === -1){
                     setRowsCleared(prev => prev + 1);
 
                     
                     
                     
 
-                    //I guess we can understand this as essentially skipping over the current row
-                    //since it's not added to the accumulator, the new stage will not have it.
-                    //Otherwise, the row is pushed to the accumulator as is. 
+                  
                     acc.unshift(new Array(newStage[0].length).fill([0, 'clear']));
                     
                     //acc.push(row.map(cell => ['W', 'merged']));
                     return acc;    
                     
-                }
+                }*/
                 
                 acc.push(row);
                 return acc;
@@ -77,21 +91,32 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
             });
             // Then check if we collided
             if (player.collided) {
+                //if (test == 1){
+
                 resetTetro(next);
                 resetPlayer(tetro);
+               // }
                 return sweepRows(newStage);
+                
+                //return sweepRows(newStage);
             }
-            /*
-            part of flash effect testing
-            if ( player.collided === 'test'){
-                return sweepRows(newStage);
-            }
-            */
+            else if (test == 1){
+                    //resetTetro(next);
+                    //resetPlayer(tetro);
+                    return sweepRows(newStage);
+                    
+                }
+            
             
             return newStage;
         };
-
+        console.log('test2: ' + test);
         setStage(prev => updateStage(prev))
+        if (test == 1){
+            console.log("it made it here");
+            setTest(0);
+            setStage(prev => updateStage(prev))
+        }
 
     }, [player, resetPlayer, resetTetro, rowsCleared]);
 

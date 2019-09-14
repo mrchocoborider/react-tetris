@@ -9,8 +9,8 @@ export const createStage = () =>
 
 //nextTetro
 
-export const NEXT_WIDTH = 4;
-export const NEXT_HEIGHT = 4;
+export const NEXT_WIDTH = 7;
+export const NEXT_HEIGHT = 5;
 
 export const createNext = () =>
     Array.from(Array(NEXT_HEIGHT), () =>

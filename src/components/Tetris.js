@@ -33,10 +33,6 @@ const Tetris = () => {
 
     const [next, tetro, resetTetro] = useNext();
     const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer(tetro);
-    console.log('player');
-    console.log(player);
-    console.log('tetro');
-    console.log(tetro);
     //const [stage, setStage] = useStage(player, resetPlayer);
     const [stage, setStage, rowsCleared] = useStage(player, resetPlayer, tetro, resetTetro, next);
     const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
@@ -94,8 +90,6 @@ const Tetris = () => {
             updatePlayerPos({ x: 0, y: 1, collided: false});
             //flash effect test
             //updatePlayerPos({ x: 0, y: 0, collided: 'test'});
-            console.log('player before: ');
-            console.log(player);
             //console.log('check collision')
             //console.log(checkCollision(player, stage, { x: 0, y: 11}));
             
