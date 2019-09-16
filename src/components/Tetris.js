@@ -115,14 +115,14 @@ const Tetris = () => {
     const keyUp = ({ keyCode }) => {
         if (!gameOver) {
             if (keyCode === 40 || keyCode === 32) {
-                console.log("Interval on");
+                //console.log("Interval on");
                 setDropTime(1000 / (level + 1) + 200);
             }
         }
     }
 
     const dropPlayer = () => {
-        console.log("Interval off");
+        //console.log("Interval off");
         setDropTime(null);
         drop();
     }
@@ -131,7 +131,7 @@ const Tetris = () => {
     //TODO: figure out why it errors out when I move the tetromino closer to the bottom
     //or closer to already merged tetrominos.
     const fastDrop = () => {
-        console.log("Interval off");
+        //console.log("Interval off");
         setDropTime(null);        
         let cy = 0
         

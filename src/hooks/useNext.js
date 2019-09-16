@@ -27,6 +27,7 @@ export const useNext = () => {
         setTetro({
             pos: { x: 0, y: 0 },
             tetromino: randomTetromino().shape,
+            //tetromino: TETROMINOS['I'].shape, //for testing
             collided: false,
         })
 

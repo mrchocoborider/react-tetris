@@ -14,6 +14,7 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
         const sweepRows = newStage => 
             newStage.reduce((acc, row) => {
                 
+                
                 // tried to make a flash effect but it's not worth the trouble lol
                 if (row.findIndex(cell => cell[0] === 0) === -1 
                 && row.every(cell => cell[0] !== 'W' ) ) {
@@ -21,6 +22,7 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
                     setTest(1);
                     console.log('test: ');
                     console.log(test);
+                    console.log('^-- flash white');
                     acc.push(row.map(() => ['W', 'merged']));
                     return acc;    
                     
@@ -29,7 +31,7 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
                     setRowsCleared(prev => prev + 1);
 
                     //test = 0;
-                    
+                    console.log('unshift');
                     
 
                   
@@ -73,7 +75,7 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
                 
                 );
 
-            
+                
 
             
             
@@ -89,10 +91,14 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
                     }
                 });
             });
+
+
+            
+
             // Then check if we collided
             if (player.collided) {
                 //if (test == 1){
-
+                console.log("here?")
                 resetTetro(next);
                 resetPlayer(tetro);
                // }
@@ -100,23 +106,31 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
                 
                 //return sweepRows(newStage);
             }
-            else if (test == 1){
-                    //resetTetro(next);
-                    //resetPlayer(tetro);
-                    return sweepRows(newStage);
-                    
-                }
+
+            if (test == 1){
+                //resetTetro(next);
+                //resetPlayer(tetro);
+                console.log('made it here too');
+                setTest(0);
+                
+                return sweepRows(newStage);
+                
+            }
+            
             
             
             return newStage;
         };
-        console.log('test2: ' + test);
+        //console.log('test2: ' + test);
+        //console.log('how often do I get called, and when?');
         setStage(prev => updateStage(prev))
-        if (test == 1){
+        /*if (test == 1){
             console.log("it made it here");
             setTest(0);
-            setStage(prev => updateStage(prev))
-        }
+             
+            setStage(prev => updateStage(prev));
+            
+        }*/
 
     }, [player, resetPlayer, resetTetro, rowsCleared]);
 

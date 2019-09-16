@@ -10,7 +10,7 @@ export const useGameStatus = rowsCleared => {
     const linePoints = [40, 100, 300, 1200];
 
     const calcScore = useCallback(() => {
-        console.log('UGS rowsCleared: ' + rowsCleared);
+        //console.log('UGS rowsCleared: ' + rowsCleared);
         // Do we have a score
         if (rowsCleared > 0){
             // This is how the original Tetris score is calculated
