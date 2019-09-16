@@ -14,7 +14,7 @@ export const useNext = () => {
     tetro.tetromino.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
-                next[y + 0][x + 0] = [
+                next[y + 1][x + 2] = [
                     value,
                     'merged'
                 ];
@@ -27,6 +27,7 @@ export const useNext = () => {
         setTetro({
             pos: { x: 0, y: 0 },
             tetromino: randomTetromino().shape,
+            //tetromino: TETROMINOS['I'].shape, //for testing
             collided: false,
         })
 

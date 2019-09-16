@@ -7,7 +7,7 @@ This project was originally just a fun follow along of [this amazing tutorial](h
 
 1. Press spacebar to instantly drop tetromino into place. Implemented successfully after a decent struggle, ultimately the struggle was self inflicted and this turned out to be way simpler than expected. I thought I needed to pass in the player position to checkCollision as y, but it already had that because you have to pass in player, x/y should be how much you move the player.
 
-2. Flash effect when clearing a line. Gave up after spending too much time for such a minor addition. Did make some headway but because of the way the lines are cleared I found it took too much re-configuring to justify the effort. Some evidence of my attempts remain in the comments.
+2. Flash effect when clearing a line. I've pretty much got it working, but it's not super consistent, sometimes it is super clear for a few rows and sometimes it's completely invisible.
 
 3. Pause button, mostly for myself to help me test things out and was instrumental in helping figure out the instant drop feature. Took me longer than I'd like to admit to implement the text change on click. Also used what I learned here to change the Start Button's text to be more clear after starting the game. 
 
