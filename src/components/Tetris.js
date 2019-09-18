@@ -153,8 +153,15 @@ const Tetris = () => {
         //console.log(cy);
         updatePlayerPos({ x: 0, y: cy, collided: true});
 
+        //flash effect, updating player pos refreshes the stage.
+        setTimeout(() => {
+            updatePlayerPos({ x: 0, y: 0, collided: false});
+
+        }, 50);
+
         //console.log('player after: ');
         //console.log(player);
+        //console.log(dropTime);
         //updatePlayerPos({ x: 0, y: cy, collided: false});
  
     }

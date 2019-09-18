@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
 import { createStage } from '../gameHelpers';
+import ReactTimeout from 'react-timeout'
+
+//testing flash effect
+//import { useTimeout } from '../hooks/useTimeout';
 
 export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
     const [stage, setStage] = useState(createStage());
     const [rowsCleared, setRowsCleared] = useState(0);
+    //testing flash effect
     const [test, setTest] = useState(0);
     //let test = 0;
     
@@ -107,16 +112,31 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
                 //return sweepRows(newStage);
             }
 
-            if (test == 1){
+            /*if (test == 1 && !player.collided){
                 //resetTetro(next);
                 //resetPlayer(tetro);
                 console.log('made it here too');
                 setTest(0);
                 
+                
                 return sweepRows(newStage);
                 
+            }*/
+            if (test == 1){
+                //resetTetro(next);
+                //resetPlayer(tetro);
+                //console.log('made it here too');
+                setTest(2);
+                
+                
+                //return sweepRows(newStage);
+                
             }
-            
+            if (test == 2){
+                setTest(0);
+
+                return sweepRows(newStage);
+            }
             
             
             return newStage;
@@ -128,11 +148,11 @@ export const useStage = (player, resetPlayer, tetro, resetTetro, next) => {
             console.log("it made it here");
             setTest(0);
              
-            setStage(prev => updateStage(prev));
             
         }*/
 
     }, [player, resetPlayer, resetTetro, rowsCleared]);
 
+    //return [stage, setStage, rowsCleared];
     return [stage, setStage, rowsCleared];
 }
